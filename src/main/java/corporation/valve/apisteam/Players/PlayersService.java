@@ -26,4 +26,8 @@ public class PlayersService {
     public PlayersModel register(PlayersModel playersModel){
         return playersRepository.save(playersModel);
     }
+
+    public void delete(Long id){
+        playersRepository.deleteById(id);
+    }
 }

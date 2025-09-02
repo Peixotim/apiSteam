@@ -14,7 +14,6 @@ public class GamesController {
     }
 
 
-
     @GetMapping("/list")
     public List<GamesModel> list(){
         return gamesService.listAll();
@@ -28,6 +27,11 @@ public class GamesController {
     @PostMapping("/register")
     public GamesModel register(@PathVariable GamesModel gamesModel){
         return gamesService.register(gamesModel);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id){
+        gamesService.delete(id);
     }
 
 }

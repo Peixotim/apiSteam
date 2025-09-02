@@ -26,4 +26,7 @@ public class GamesService {
         return gamesRepository.save(gamesModel);
     }
 
+    public void delete(Long id){
+        gamesRepository.deleteById(id);
+    }
 }

@@ -1,5 +1,6 @@
 package corporation.valve.apisteam.Players;
 
+import corporation.valve.apisteam.Games.GamesService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -7,9 +8,9 @@ import java.util.List;
 @RequestMapping("/players")
 public class PlayersController {
 
-    private PlayersService playersService;
+    private final PlayersService playersService;
 
-    public PlayersController(PlayersService playersService){
+    public PlayersController(PlayersService playersService, GamesService gamesService){
         this.playersService = playersService;
     }
 
@@ -27,6 +28,11 @@ public class PlayersController {
     @PostMapping("/register")
     public PlayersModel register(@RequestBody PlayersModel playersModel){
         return playersService.register(playersModel);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id){
+        playersService.delete(id);
     }
 
 }

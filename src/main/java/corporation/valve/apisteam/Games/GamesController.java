@@ -15,23 +15,27 @@ public class GamesController {
 
 
     @GetMapping("/list")
-    public List<GamesModel> list(){
-        return gamesService.listAll();
+    public List<GamesDTO> list(){
+        return gamesService.list();
     }
 
-    @GetMapping("/list/{id}")
-    public GamesModel listById(Long id){
-        return gamesService.listById(id);
+    @GetMapping("/find/{id}")
+    public GamesDTO findById(@PathVariable Long id){
+        return gamesService.findById(id);
     }
 
-    @PostMapping("/register")
-    public GamesModel register(@PathVariable GamesModel gamesModel){
-        return gamesService.register(gamesModel);
+    @PostMapping("/create")
+    public GamesDTO create(@RequestBody GamesDTO gamesDTO){
+        return gamesService.create(gamesDTO);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id){
         gamesService.delete(id);
     }
 
+    @PutMapping("/alter/{id}")
+    public GamesDTO alter(@PathVariable Long id , @RequestBody GamesDTO dto){
+        return gamesService.alter(id,dto);
+    }
 }

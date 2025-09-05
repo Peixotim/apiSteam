@@ -5,31 +5,38 @@ import java.util.List;
 
 @RequestMapping("/enterprises")
 @RestController
-public class EnterprisesController {
+public class EnterpriseController {
 
     private EnterpriseService enterprisesService;
 
-    public EnterprisesController(EnterpriseService enterprisesService){
+    public EnterpriseController(EnterpriseService enterprisesService){
         this.enterprisesService = enterprisesService;
     }
 
+
     @GetMapping("/list")
-    public List<EnterprisesModel> list(){
-        return enterprisesService.listAll();
+    public List<EnterpriseDTO> list(){
+        return enterprisesService.list();
     }
 
     @GetMapping("/list/{id}")
-    public EnterprisesModel listById(@PathVariable Long id){
+    public EnterpriseDTO listById(@PathVariable Long id){
         return enterprisesService.listById(id);
     }
 
     @PostMapping("/register")
-    public EnterprisesModel register(@RequestBody EnterprisesModel enterprisesModel){
-        return enterprisesService.register(enterprisesModel);
+    public EnterpriseDTO register(@RequestBody EnterpriseDTO enterpriseDTO){
+        return enterprisesService.register(enterpriseDTO);
     }
 
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id){
         enterprisesService.delete(id);
+    }
+
+
+    @PutMapping("/alter/id")
+    public EnterpriseDTO alter(@PathVariable Long id , @RequestBody EnterpriseDTO dto){
+        return enterprisesService.alter(id,dto);
     }
 }

@@ -2,45 +2,24 @@ package corporation.valve.apisteam.Games;
 
 import corporation.valve.apisteam.Enterprises.EnterpriseModel;
 import corporation.valve.apisteam.Players.PlayersModel;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.List;
 
-@Entity
+import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_games")
-public class GamesModel {
+public class GamesDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "release_date")
     private int year;
-
-    @Column(name = "image")
     private String image;
-
-    @Column(name = "indicative_classification")
     private int indicative;
-
-    @Column(name = "requeriments")
     private String requisistos;
-
-    @ManyToOne
-    @JoinColumn(name = "enterprise_id")
     private EnterpriseModel enterprise;
-
-    @OneToMany(mappedBy = "games")
     private List<PlayersModel> players;
+
 }
